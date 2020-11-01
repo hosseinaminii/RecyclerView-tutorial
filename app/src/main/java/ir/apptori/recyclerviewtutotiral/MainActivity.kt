@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rclNames = findViewById<RecyclerView>(R.id.rclNames)
+        val btnUpdateList = findViewById<Button>(R.id.btnUpdateList)
 
         // If size of the all items are equal and won't change for a better performance it's better to set setHasFixedSize to true
         rclNames.setHasFixedSize(true)
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         rclNames.adapter = namesAdapter
         // Setting our RecyclerView's layout manager equal to LinearLayoutManager
         rclNames.layoutManager = LinearLayoutManager(this)
+
+        // Updating the last item of our list by clicking on the btnUpdateList
+        btnUpdateList.setOnClickListener {
+            nameList[nameList.size - 1] = "Hello! I've been updated right now :)"
+            namesAdapter.notifyDataSetChanged()
+        }
 
     }
 
