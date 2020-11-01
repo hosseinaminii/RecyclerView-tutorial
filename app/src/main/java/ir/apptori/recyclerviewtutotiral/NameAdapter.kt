@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 class NameAdapter(private val nameList: List<String>) :
     RecyclerView.Adapter<NameAdapter.NameViewHolder>() {
 
+    // Creating a Unit function as variable
+    var itemClickListener: ((position: Int, name: String) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NameViewHolder {
         // Inflating R.layout.name_item
         val view = LayoutInflater.from(parent.context)
@@ -26,6 +29,12 @@ class NameAdapter(private val nameList: List<String>) :
         val element = nameList[position]
         // Updating the text of the txtName with this element
         holder.txtName.text = element
+
+        // Adding an OnClickLister to the holder.itemView
+        holder.itemView.setOnClickListener {
+            // Invoking itemClickListener and passing it the position and name
+            itemClickListener?.invoke(position, element)
+        }
     }
 
     override fun getItemCount(): Int {

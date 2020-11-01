@@ -32,6 +32,12 @@ class MainActivity : AppCompatActivity() {
             namesAdapter.notifyDataSetChanged()
         }
 
+        // Initializing namesAdapter.itemClickListener
+        namesAdapter.itemClickListener = { position, name ->
+            Toast.makeText(this, "position: $position - name: $name", Toast.LENGTH_SHORT)
+                    .show()
+        }
+
     }
 
     // This function just creates a list of names for us
